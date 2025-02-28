@@ -92,8 +92,13 @@ document.getElementById("add-to-cart").addEventListener("click", function () {
     .id.split("-")[1];
   const quantity = quantityValueInt;
   const price = priceBtn.innerText.split("$")[1];
-  const covertedPrice = parseFloat(price);
+  const covertedPrice = parseInt(price);
   const ultimatePrice = covertedPrice * quantity;
+
+  if (quantity === 0) {
+    alert("please add a quantity");
+    return;
+  }
 
   productsCart.push({
     productImage: productImage,
@@ -103,7 +108,6 @@ document.getElementById("add-to-cart").addEventListener("click", function () {
     quantity: quantity,
     price: ultimatePrice,
   });
-  // console.log(productsCart);
 });
 
 // total producs price
@@ -135,6 +139,7 @@ document
 
       cartItems.insertBefore(row, cartItems.firstChild);
     }
+
     console.log(totalAmount);
     document.getElementById("totol-amount").innerText = totalAmount;
     // remove hidden class to show modal
