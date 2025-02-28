@@ -136,7 +136,7 @@
                   +
                 </button>
               </div>
-              <div class="flex items-center space-x-2">
+              <div class="flex items-center space-x-2 mt-2">
                 <button
                   class="px-6 py-3 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700"
                   id="add-to-cart"
@@ -196,11 +196,11 @@
             <tbody id="cart-items">
               <!-- Cart items will go here dynamically -->
               <!-- dynamic tr -->
-              <!-- <tr>
+              <!-- <tr class="border-b">
                 <th>
                   <div class="flex items-center gap-2">
-                    <div class="w-12 h-12 mt-1">
-                      <img src="images/cyan.png" alt="" />
+                    <div class="w-12 h-12 mt-1 mb-1">
+                      <img class="w-full h-full" src="images/cyan.png" alt="" />
                     </div>
                     <h2 class="whitespace-nowrap">Classy Modern Smart Watch</h2>
                   </div>
@@ -209,7 +209,17 @@
                 <th>L</th>
                 <th>2</th>
                 <th>$150</th>
-              </tr> -->
+              </tr>
+              -->
+              <tr>
+                <th class="text-left">
+                  <p class="ml-4">Total</p>
+                </th>
+                <th></th>
+                <th></th>
+                <th id="totalQuantity">6</th>
+                <th>$<span id="totol-amount">200</span></th>
+              </tr>
             </tbody>
           </table>
         </div>

@@ -60,7 +60,7 @@ for (const btn of quantityBtn) {
 }
 
 // array of object to store product info
-const productsCart = [];
+let productsCart = [];
 // add to card event handler
 let isCheckoutButtonShow = false;
 document.getElementById("add-to-cart").addEventListener("click", function () {
@@ -92,31 +92,36 @@ document.getElementById("add-to-cart").addEventListener("click", function () {
     .id.split("-")[1];
   const quantity = quantityValueInt;
   const price = priceBtn.innerText.split("$")[1];
+  const covertedPrice = parseFloat(price);
+  const ultimatePrice = covertedPrice * quantity;
+
   productsCart.push({
     productImage: productImage,
     title: title,
     color: color,
     size: size,
     quantity: quantity,
-    price: price,
+    price: ultimatePrice,
   });
-
   // console.log(productsCart);
 });
 
+// total producs price
+let totalAmount = 0;
 // show modal handler
 document
   .getElementById("checkout-container")
   .addEventListener("click", function () {
-    console.log(productsCart);
     const cartItems = document.getElementById("cart-items");
     for (const product of productsCart) {
+      totalAmount += parseFloat(product.price);
       const row = document.createElement("tr");
+      row.classList.add("border-b");
       row.innerHTML = `
           <th>
             <div class="flex items-center gap-2">
-              <div class="w-12 h-12 mt-1">
-                <img src="${product.productImage}" alt="" />
+              <div class="w-12 h-12 mt-1 mb-1">
+                <img class="w-full h-full" src="${product.productImage}" alt="" />
               </div>
               <h2 class="whitespace-nowrap">${product.title}</h2>
             </div>
@@ -127,9 +132,11 @@ document
           <th>$${product.price}
           </th>
       `;
-      cartItems.appendChild(row);
-    }
 
+      cartItems.insertBefore(row, cartItems.firstChild);
+    }
+    console.log(totalAmount);
+    document.getElementById("totol-amount").innerText = totalAmount;
     // remove hidden class to show modal
     modal.classList.remove("hidden");
   });
@@ -139,6 +146,7 @@ document
   .getElementById("continue-shopping")
   .addEventListener("click", function () {
     modal.classList.add("hidden");
+    productsCart = [];
   });
 
 // checkout handler
